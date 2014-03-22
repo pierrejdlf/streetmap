@@ -48,7 +48,7 @@
 	</style>
 </head>
 <body>
-	<div id="overlay" class="off"></div>
+	<div id="overlay"></div>
 	<div id="map"></div>
 </body>
 
@@ -62,10 +62,14 @@
 		}
 
 		var heading = getURLParameter("h") || 0,
-			pitch = getURLParameter("p") || -70,
-			N = getURLParameter("n") || 7;
+			pitch = getURLParameter("p") || 0,
+			N = getURLParameter("n") || 4;
 
 		console.log("Load.", heading, pitch, N);
+		var ls = "?n="+N+"&h="+heading+"&p="+pitch;
+		if(location.search!=ls)
+			location.search = ls;
+
 		var map = L.map('map', {
 			center: [48.87,2.347],
 			maxZoom: 21,
@@ -82,7 +86,7 @@
 	        	h = $(window).height(),
 	        	ratio = w/h;
 			nPerW = N;
-	        nPerH = Math.max(1,parseInt(nPerW/ratio));
+	        nPerH = Math.max(1,parseInt(nPerW/ratio*1.2));
 	        cW = w/nPerW;
 	        cH = h/nPerH;
 	        //console.log("Calculed:",cW,cH,nPerW,nPerH);
