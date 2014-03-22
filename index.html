@@ -63,7 +63,15 @@
 
 		var heading = getURLParameter("h") || 0,
 			pitch = getURLParameter("p") || 0,
-			N = getURLParameter("n") || 4;
+			N = getURLParameter("n") || 3,
+			NW = null,
+			NH = null;
+		if(/x/.test(N)) {
+			NW = N.split("x")[0];
+			NH = N.split("x")[1];
+		} else {
+			NW = N;
+		}
 
 		console.log("Load.", heading, pitch, N);
 		var ls = "?n="+N+"&h="+heading+"&p="+pitch;
@@ -85,8 +93,8 @@
 	        var w = $(window).width(),
 	        	h = $(window).height(),
 	        	ratio = w/h;
-			nPerW = N;
-	        nPerH = Math.max(1,parseInt(nPerW/ratio*1.2));
+			nPerW = NW;
+	        nPerH = NH || Math.max(1,parseInt(nPerW/ratio*1.2));
 	        cW = w/nPerW;
 	        cH = h/nPerH;
 	        //console.log("Calculed:",cW,cH,nPerW,nPerH);
