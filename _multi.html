@@ -68,10 +68,6 @@
 			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
 			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
 			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
-			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
-			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
-			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
-			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
 		];
 		
 		// create one map per layer
@@ -90,7 +86,7 @@
 			maps['map_'+k] = L.map('map_'+k, {
 			    layers: [L.tileLayer(l)],
 			    center: [48.87,2.347],
-			    zoom: 18-k, //13
+			    zoom: 16-k, //13
 			    zoomControl: false
 			});
 		});
