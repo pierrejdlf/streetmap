@@ -13,6 +13,8 @@
     "leaflet.locatecontrol":"https://github.com/domoritz/leaflet-locatecontrol/archive/gh-pages.zip",
     "leaflet.fullscreen":"https://github.com/Leaflet/Leaflet.fullscreen/archive/gh-pages.zip",
     "Leaflet.functionaltilelayer":"https://github.com/ismyrnow/Leaflet.functionaltilelayer/archive/gh-pages.zip",
+    "Leaflet.Sync":"https://github.com/turban/Leaflet.Sync/archive/master.zip",
+    "leaflet-grayscale":"https://github.com/Zverik/leaflet-grayscale/archive/master.zip",
     "Font-Awesome":"4.0.3"
   }
 }

@@ -1,0 +1,160 @@
+<html>
+<head>
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.3/zepto.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css"/>
+
+	<script src="./bower_components/Leaflet.Sync/L.Map.Sync.js"></script>
+
+	<style type="text/css">
+		html, body {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		#maps {
+			display: table;
+			width: 100%;
+			height: 100%;
+			background: black;
+			overflow: hidden;
+		}
+		.map {
+			display: table-cell;
+			height: 100%;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+	<div id="maps"></div>
+</body>
+
+<script>
+	
+	var m = null;
+
+	$(function(){
+
+		var layers = [
+			'http://a.tiles.mapbox.com/v3/minut.hflfi81j/{z}/{x}/{y}.jpg70',
+			'http://a.tiles.mapbox.com/v3/minut.hjj3nm8l/{z}/{x}/{y}.jpg70',	
+			
+			'http://a.tiles.mapbox.com/v3/minut.map-zvhmz6wx/{z}/{x}/{y}.jpg70',
+			'http://a.tiles.mapbox.com/v3/minut.map-6d8sskz5/{z}/{x}/{y}.jpg70',
+			'http://a.tiles.mapbox.com/v3/minut.map-tno4o0kc/{z}/{x}/{y}.jpg70',
+			'http://a.tiles.mapbox.com/v3/minut.map-qgm940aa/{z}/{x}/{y}.jpg70',
+
+			'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png',
+			'http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg',
+        	'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
+        	'http://b.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png'
+		];
+
+		var layers = [
+			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
+			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
+			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
+			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
+			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
+			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
+			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
+			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
+			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
+			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
+			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
+			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
+			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
+			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
+			'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png',
+		];
+		
+		// create one map per layer
+		$('.cell').remove();
+	    var o = $("#maps");
+	    var maps = {};
+
+	    var W = o.width();
+		var wc = W / layers.length;
+
+        _.each(layers, function(l,k) {
+        	o.append("<div class='map' id='map_"+k+"' style='width:"+wc+"px'</div>");
+		});
+
+        _.each(layers, function(l,k) {
+			maps['map_'+k] = L.map('map_'+k, {
+			    layers: [L.tileLayer(l)],
+			    center: [48.87,2.347],
+			    zoom: 18-k, //13
+			    zoomControl: false
+			});
+		});
+
+        m = maps['map_0'];
+
+		var adjust = function() {
+			console.log("adjust !");
+			var cc = m.getCenter();
+
+	        // decal centers
+	    	// var lngStep = (
+	    	// 	m.layerPointToLatLng( L.point(W,0) ).lng - 
+	    	// 	m.layerPointToLatLng( L.point(0,0) ).lng
+	    	// )/(layers.length);
+			// console.log("step is:", lngStep, "center:", m.getCenter());
+
+	        _.each(maps, function(u,j) {
+	        // 	var decal = lngStep*(+j.split('_')[1]);
+	        // 	console.log("decal",decal);
+	        // 	//u.panTo( [cc.lat, cc.lng]);// + decal ] );
+        		u.setView( [cc.lat, cc.lng] );
+	        	u.panBy( [wc * (+j.split('_')[1]), 0] );
+	         });
+		};
+
+        
+        maps['map_'+(layers.length-1)].whenReady(function() {
+
+        	console.log("ready.");
+
+	    	adjust();
+
+	        // sync & pan timer
+	        setTimeout(function() {
+
+	        	console.log("Sync !");
+	        	
+	        	// sync controls
+		        // _.each(maps, function(m,j) {
+		        // 	_.each(maps, function(n,k) {
+		        // 		if(m!=n) m.sync(n);
+		        // 	});
+		        // });
+
+				setInterval( function() {
+					console.log("reg.");
+					//m.panTo([m.getCenter().lat,m.getCenter().lng+0.001]);
+					_.each(maps, function(u,j) {
+						//u.panBy( [wc * (+j.split('_')[1]), 0] );
+						u.panTo( [u.getCenter().lat,u.getCenter().lng+0.001] );
+					});
+				}, 1000);
+
+			},7000);
+	    });
+
+
+		document.onkeypress = function (e) {
+			e = e || window.event;
+			if(e.keyCode==32) //space
+				adjust();
+		};
+	});
+
+</script>
+</html>
