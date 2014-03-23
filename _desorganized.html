@@ -1,0 +1,65 @@
+<html>
+<head>
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/zepto/1.1.3/zepto.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css"/>
+
+	<script src="./bower_components/Leaflet.functionaltilelayer/src/leaflet.functionaltilelayer.js"></script>
+
+	<style type="text/css">
+		html, body, #map {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		#overlay {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background: black;
+			opacity: 0.7;
+			z-index: 9999999;
+			pointer-events: none;
+			overflow: hidden;
+			-webkit-transition: opacity 400ms;
+			-moz-transition: opacity 400ms;
+			-ms-transition: opacity 400ms;
+			-o-transition: opacity 400ms;
+			transition: opacity 400ms;
+		}
+	</style>
+</head>
+<body>
+	<!-- <div id="overlay"></div> -->
+	<div id="map"></div>
+</body>
+
+<script>
+
+	$(function(){
+
+		var u = 'http://a.tiles.mapbox.com/v3/minut.hflfi81j/{z}/{y}/{x}.jpg70';
+		//var u = 'http://a.tiles.mapbox.com/v3/minut.map-zvhmz6wx/{z}/{y}/{x}.jpg70';
+		//var u = 'http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{y}/{x}.jpg'
+
+		var funcLayer = new L.TileLayer.Functional(function (view) {
+			var url = u
+				.replace('{z}', view.zoom)
+				.replace('{x}', view.tile.row +parseInt(Math.random()*5))
+				.replace('{y}', view.tile.column +parseInt(Math.random()*5))
+				.replace('{s}', view.subdomain);
+				return url;
+			}, {
+			subdomains: '1234'
+		});
+
+    	var map = new L.Map('map', { center: new L.LatLng(48.87,2.347), zoom: 15, layers: [funcLayer] });
+	});
+
+</script>
+</html>

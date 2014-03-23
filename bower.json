@@ -1,0 +1,18 @@
+{
+  "name": "tube",
+  "version": "0.1.1",
+  "devDependencies": {
+    "less":"latest",
+    "moment": "~2.4.0",
+    "zepto":"http://github.com/madrobby/zepto/archive/master.zip",
+    "handlebars":"1.1.2",
+    "underscore":"1.5.2",
+    "leaflet": "http://leaflet-cdn.s3.amazonaws.com/build/leaflet-0.7.zip",
+    "leaflet.markercluster": "latest",
+    "leaflet.bouncemarker":"https://github.com/maximeh/leaflet.bouncemarker/archive/master.zip",
+    "leaflet.locatecontrol":"https://github.com/domoritz/leaflet-locatecontrol/archive/gh-pages.zip",
+    "leaflet.fullscreen":"https://github.com/Leaflet/Leaflet.fullscreen/archive/gh-pages.zip",
+    "Leaflet.functionaltilelayer":"https://github.com/ismyrnow/Leaflet.functionaltilelayer/archive/gh-pages.zip",
+    "Font-Awesome":"4.0.3"
+  }
+}

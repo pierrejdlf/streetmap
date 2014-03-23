@@ -1,0 +1,11 @@
+{
+  "name": "zepto",
+  "_cacheHeaders": {
+    "Content-Length": "117861",
+    "Content-Type": "application/zip",
+    "Content-Disposition": "attachment; filename=zepto-master.zip"
+  },
+  "_source": "http://github.com/madrobby/zepto/archive/master.zip",
+  "_target": "*",
+  "_originalSource": "http://github.com/madrobby/zepto/archive/master.zip"
+}

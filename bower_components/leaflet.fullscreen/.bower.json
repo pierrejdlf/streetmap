@@ -1,0 +1,10 @@
+{
+  "name": "leaflet.fullscreen",
+  "_cacheHeaders": {
+    "Content-Type": "application/zip",
+    "Content-Disposition": "attachment; filename=Leaflet.fullscreen-gh-pages.zip"
+  },
+  "_source": "https://github.com/Leaflet/Leaflet.fullscreen/archive/gh-pages.zip",
+  "_target": "*",
+  "_originalSource": "https://github.com/Leaflet/Leaflet.fullscreen/archive/gh-pages.zip"
+}
