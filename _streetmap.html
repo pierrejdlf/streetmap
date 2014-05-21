@@ -57,13 +57,13 @@
 	$(function(){
 		function getURLParameter(name) {
 			var p = decodeURI((RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
-			if(p!="null") return p;
+			if(p && p!="null") return p;
 			else return null;
 		}
 
-		var heading = getURLParameter("h") || 0,
-			pitch = getURLParameter("p") || 0,
-			N = getURLParameter("n") || 3,
+		var heading = getURLParameter("h"),
+			pitch = getURLParameter("p"),
+			N = getURLParameter("n"),
 			NW = null,
 			NH = null;
 		if(/x/.test(N)) {
