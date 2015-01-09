@@ -1,9 +1,12 @@
 {
   "name": "leaflet-grayscale",
   "_cacheHeaders": {
+    "ETag": "\"8675605f71f856299ebdd05a635ba1494817f5ff\"",
+    "Content-Length": "1392",
     "Content-Type": "application/zip",
     "Content-Disposition": "attachment; filename=leaflet-grayscale-master.zip"
   },
+  "_release": "e-tag:8675605f7",
   "_source": "https://github.com/Zverik/leaflet-grayscale/archive/master.zip",
   "_target": "*",
   "_originalSource": "https://github.com/Zverik/leaflet-grayscale/archive/master.zip"

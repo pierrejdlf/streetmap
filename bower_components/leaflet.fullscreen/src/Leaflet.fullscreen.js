@@ -2,8 +2,8 @@ L.Control.Fullscreen = L.Control.extend({
     options: {
         position: 'topleft',
         title: {
-            false: 'View Fullscreen',
-            true: 'Exit Fullscreen'
+            'false': 'View Fullscreen',
+            'true': 'Exit Fullscreen'
         }
     },
 
@@ -47,11 +47,12 @@ L.Map.include({
                 document.mozCancelFullScreen();
             } else if (document.webkitCancelFullScreen) {
                 document.webkitCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
             } else {
                 L.DomUtil.removeClass(container, 'leaflet-pseudo-fullscreen');
-                this._toggleFullscreenClass();
+                this._setFullscreen(false);
                 this.invalidateSize();
-                this._isFullscreen = false;
                 this.fire('fullscreenchange');
             }
         } else {
@@ -61,37 +62,39 @@ L.Map.include({
                 container.mozRequestFullScreen();
             } else if (container.webkitRequestFullscreen) {
                 container.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+            } else if (container.msRequestFullscreen) {
+                container.msRequestFullscreen();
             } else {
                 L.DomUtil.addClass(container, 'leaflet-pseudo-fullscreen');
-                this._toggleFullscreenClass();
+                this._setFullscreen(true);
                 this.invalidateSize();
-                this._isFullscreen = true;
                 this.fire('fullscreenchange');
             }
         }
     },
 
-    _toggleFullscreenClass: function() {
+    _setFullscreen: function(fullscreen) {
+        this._isFullscreen = fullscreen;
         var container = this.getContainer();
-        if (this.isFullscreen()) {
-            L.DomUtil.removeClass(container, 'leaflet-fullscreen-on');
-        } else {
+        if (fullscreen) {
             L.DomUtil.addClass(container, 'leaflet-fullscreen-on');
+        } else {
+            L.DomUtil.removeClass(container, 'leaflet-fullscreen-on');
         }
     },
 
-    _onFullscreenChange: function () {
+    _onFullscreenChange: function (e) {
         var fullscreenElement =
             document.fullscreenElement ||
             document.mozFullScreenElement ||
-            document.webkitFullscreenElement;
+            document.webkitFullscreenElement ||
+            document.msFullscreenElement;
 
-        this._toggleFullscreenClass();
-        if (fullscreenElement === this.getContainer()) {
-            this._isFullscreen = true;
+        if (fullscreenElement === this.getContainer() && !this._isFullscreen) {
+            this._setFullscreen(true);
             this.fire('fullscreenchange');
-        } else if (this._isFullscreen) {
-            this._isFullscreen = false;
+        } else if (fullscreenElement !== this.getContainer() && this._isFullscreen) {
+            this._setFullscreen(false);
             this.fire('fullscreenchange');
         }
     }
@@ -115,15 +118,19 @@ L.Map.addInitHook(function () {
         fullscreenchange = 'mozfullscreenchange';
     } else if ('onwebkitfullscreenchange' in document) {
         fullscreenchange = 'webkitfullscreenchange';
+    } else if ('onmsfullscreenchange' in document) {
+        fullscreenchange = 'MSFullscreenChange';
     }
 
     if (fullscreenchange) {
+        var onFullscreenChange = L.bind(this._onFullscreenChange, this);
+
         this.whenReady(function () {
-            L.DomEvent.on(document, fullscreenchange, this._onFullscreenChange, this);
+            L.DomEvent.on(document, fullscreenchange, onFullscreenChange);
         });
 
         this.on('unload', function () {
-            L.DomEvent.off(document, fullscreenchange, this._onFullscreenChange);
+            L.DomEvent.off(document, fullscreenchange, onFullscreenChange);
         });
     }
 });

@@ -1,10 +1,12 @@
 {
   "name": "leaflet.bouncemarker",
   "_cacheHeaders": {
-    "Content-Length": "4627",
+    "ETag": "\"1fd30ec38487e1d003c3bed7304c2b977b1f3e42\"",
+    "Content-Length": "4624",
     "Content-Type": "application/zip",
     "Content-Disposition": "attachment; filename=leaflet.bouncemarker-master.zip"
   },
+  "_release": "e-tag:1fd30ec38",
   "_source": "https://github.com/maximeh/leaflet.bouncemarker/archive/master.zip",
   "_target": "*",
   "_originalSource": "https://github.com/maximeh/leaflet.bouncemarker/archive/master.zip"

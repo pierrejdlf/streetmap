@@ -20,9 +20,12 @@
     "test"
   ],
   "_cacheHeaders": {
+    "ETag": "\"ddfe920e8a75bfe59cf79bf32eb2ddb84f6ec6c1\"",
+    "Content-Length": "7904",
     "Content-Type": "application/zip",
     "Content-Disposition": "attachment; filename=Leaflet.Sync-master.zip"
   },
+  "_release": "e-tag:ddfe920e8",
   "_source": "https://github.com/turban/Leaflet.Sync/archive/master.zip",
   "_target": "*",
   "_originalSource": "https://github.com/turban/Leaflet.Sync/archive/master.zip"

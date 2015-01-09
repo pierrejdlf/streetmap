@@ -1,9 +1,12 @@
 {
   "name": "leaflet.fullscreen",
   "_cacheHeaders": {
+    "ETag": "\"21e0228e657658efdef6f18581384aaef9b64e4e\"",
+    "Content-Length": "12542",
     "Content-Type": "application/zip",
     "Content-Disposition": "attachment; filename=Leaflet.fullscreen-gh-pages.zip"
   },
+  "_release": "e-tag:21e0228e6",
   "_source": "https://github.com/Leaflet/Leaflet.fullscreen/archive/gh-pages.zip",
   "_target": "*",
   "_originalSource": "https://github.com/Leaflet/Leaflet.fullscreen/archive/gh-pages.zip"

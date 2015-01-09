@@ -1,10 +1,12 @@
 {
   "name": "zepto",
   "_cacheHeaders": {
-    "Content-Length": "117861",
+    "ETag": "\"2bd5d7a09ba35a44e0fd2cf43c55bcab55fb3bd7\"",
+    "Content-Length": "120698",
     "Content-Type": "application/zip",
     "Content-Disposition": "attachment; filename=zepto-master.zip"
   },
+  "_release": "e-tag:2bd5d7a09",
   "_source": "http://github.com/madrobby/zepto/archive/master.zip",
   "_target": "*",
   "_originalSource": "http://github.com/madrobby/zepto/archive/master.zip"
