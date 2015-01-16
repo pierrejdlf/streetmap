@@ -61,9 +61,9 @@
 			else return null;
 		}
 
-		var heading = getURLParameter("h"),
-			pitch = getURLParameter("p"),
-			N = getURLParameter("n"),
+		var heading = getURLParameter("h") || 90,
+			pitch = getURLParameter("p") || 0,
+			N = getURLParameter("n") || "3x2",
 			NW = null,
 			NH = null;
 		if(/x/.test(N)) {

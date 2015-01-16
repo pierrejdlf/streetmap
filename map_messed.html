@@ -44,26 +44,26 @@
 	$(function(){
 
 		var u ='http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg';
-        var u ='http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png';
-        var u ='http://b.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png';
-		var u ='http://a.tiles.mapbox.com/v3/minut.hflfi81j/{z}/{x}/{y}.jpg70';
-		var u ='http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png';
-		var u ='http://a.tiles.mapbox.com/v3/minut.map-zvhmz6wx/{z}/{x}/{y}.jpg70';
-		var u ='http://a.tiles.mapbox.com/v3/minut.map-6d8sskz5/{z}/{x}/{y}.jpg70';
-		var u ='http://a.tiles.mapbox.com/v3/minut.hjj3nm8l/{z}/{x}/{y}.jpg70';
+    var u ='http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png';
+    var u ='http://b.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png';
+		//var u ='http://a.tiles.mapbox.com/v3/minut.hflfi81j/{z}/{x}/{y}.jpg70';
+		//var u ='http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png';
+		// var u ='http://a.tiles.mapbox.com/v3/minut.map-zvhmz6wx/{z}/{x}/{y}.jpg70';
+		// var u ='http://a.tiles.mapbox.com/v3/minut.map-6d8sskz5/{z}/{x}/{y}.jpg70';
+		// var u ='http://a.tiles.mapbox.com/v3/minut.hjj3nm8l/{z}/{x}/{y}.jpg70';
 
 		var funcLayer = new L.TileLayer.Functional(function (view) {
 			var url = u
 				.replace('{z}', view.zoom)
-				.replace('{x}', view.tile.row +parseInt(Math.random()*5))
-				.replace('{y}', view.tile.column +parseInt(Math.random()*5))
+				.replace('{x}', view.tile.row +parseInt(Math.random()*2))
+				.replace('{y}', view.tile.column +parseInt(Math.random()*2))
 				.replace('{s}', view.subdomain);
 				return url;
 			}, {
 			subdomains: '1234'
 		});
 
-    	var map = new L.Map('map', { center: new L.LatLng(48.87,2.347), zoom: 15, layers: [funcLayer] });
+    	var map = new L.Map('map', { center: new L.LatLng(48.854,2.324), zoom: 14, layers: [funcLayer] });
 	});
 
 </script>
